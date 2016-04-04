@@ -33,6 +33,7 @@ security:
 
             logout:       true
             anonymous:    true
+            switch_user:  true
 
 
     access_control:
