@@ -1,1 +1,45 @@
 {% extends'::base.html.twig' %}
+{% block body %}
+
+    <div class="btn-group">
+        <button type="button" id="vorspeisen"  class="btn btn-default">Vorspeise</button>
+        <button type="button" id="hauptspeisen" class="btn btn-default">Hauptgang</button>
+        <button type="button" id="nachspeise" onclick="loadThree()" class="btn btn-default">Nachspeise</button>
+    </div>
+
+    <p id="socialbookmarksanzeigen">
+        Weiterempfehlen
+        <a href="#" id="sobo-einblenden">einblenden</a>
+        <a href="#" id="sobo-ausblenden">ausblenden</a>
+    </p>
+    <div id="sozialbookmarks">
+        <p><b>Bereich für social bookmarks</b><br>
+            Hier kommen nun die üblichen Verdächtigen und Logos dazu.<br>
+            Nicht vergessen, meine Seite zu bookmarken!</p>
+    </div>
+
+    <div id="demo"><h2>Let AJAX change this text</h2></div>
+
+    <div class="section">
+        Sektion 2
+    </div>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#vorspeisen").click(function(){
+                alert("The paragraph was clicked.");
+            });
+        });
+        $(document).ready(function(){
+            $("#hauptspeisen").click(function(){
+                alert("mööömp");
+            });
+        });
+        $(document).ready(function(){
+            $("#nachspeise").click(function(){
+                $('.section').before('<p>Test</p>');
+            });
+        });
+    </script>
+{% endblock %}
