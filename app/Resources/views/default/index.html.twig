@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block link %}
+    <link href="stylesheet.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<!-- Hier kommt meine HTML Seite rein -->
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CookMe</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text">Bereits registriert?</p></li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Header Carousel -->
+<header id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url('img/img1.jpeg');"></div>
+            <div class="carousel-caption">
+                <h2>Finde das passende Rezept f&uumlr dich</h2>
+                <a class="ghost_btn" href="#">Anmelden</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('img/img2.jpg');"></div>
+            <div class="carousel-caption">
+                <h2>Was magst du heute Essen?</h2>
+                <a class="ghost_btn" href="#">Anmelden</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('img/img3.jpeg');"></div>
+            <div class="carousel-caption">
+                <h2>Melde dich schnell an, damit du dir deine Rezepte suchen kannst!</h2>
+                <a class="ghost_btn" href="#">Anmelden</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</header>
+
+<!-- Script to Activate the Carousel -->
+    {% block javascripts %}
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+        {% endblock %}
+
+{% endblock %}
+
