@@ -36,7 +36,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/recipes", name="demo_recipes")
+     * @Route("/search", name="demo_recipes")
      */
     public function recipesAction($suchbegriff)
     {
@@ -111,7 +111,7 @@ class DefaultController extends Controller
        # $sourceUrl = null;
         $id = null;
         if ($form->isSubmitted() && $form->isValid()) {
-            $suchbegriff=$form["Suchbegriffe"]->getData();
+            $suchbegriff=$form["Zutaten"]->getData();
             $title=$this->recipesAction($suchbegriff);
             $image =$this->imagesAction($suchbegriff);
             $id =$this ->getIdAction($suchbegriff);
@@ -126,6 +126,40 @@ class DefaultController extends Controller
 
         );
     }
+
+    public function recipeFormAction($request)
+    {
+        // create a task and give it some dummy data for this example
+        $rezept = new rezept();
+        $rezept->setTitle('');
+        $rezept->setDiscription('');
+        $rezept->setZutaten('');
+        $rezept->setAuthor('');
+
+
+        $recipeForm = $this->createFormBuilder($rezept)
+            ->add('Titel', TextType::class)
+            ->add('Beschreibung', TextType::class)
+            ->add('Zutaten', TextType::class)
+            ->add('Autor', TextType::class)
+            ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept erstellen'))
+            ->getForm();
+
+        $recipeForm->handleRequest($request);
+
+        return $recipeForm->createView();
+    }
+
+    /**
+     * @Route("/user-dashboard", name="dashboard")
+     */
+    public function createRecipesAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('user-dashboard/dashboard.html.twig',$this->recipeFormAction($request)
+        );
+    }
+
 
 
 

@@ -1,8 +1,9 @@
 {% extends'::base.html.twig' %}
 {% block body %}
-    <button type="button" class="btn btn-default" id="search"> Rezepte suchen </button>
-    <button type="button" class="btn btn-default"> Rezepte erstellen </button>
+    <button type="button" class="btn btn-primary" id="search"> Rezepte suchen </button>
+    <button type="button" class="btn btn-primary" id="create"> Rezepte erstellen </button>
 
+    <div id="eingabe">
     <h1> Bitte geben Sie ihre Zutaten ein:</h1>
     {{ form_start(form) }}
     {{ form_widget(form) }}
@@ -12,9 +13,37 @@
     <div>
         <img src="{{ image }}">
     </div>
+        <button type="button" class="btn btn-default" id="ausblenden"> Ausblenden </button>
+    </div>
+
+    <div id="eingabe2">
+        <h1> Bitte geben Sie ihre Rezept ein:</h1>
+        <button type="button" class="btn btn-xs btn-default" id="ausblenden2"> Ausblenden </button>
+    </div>
+
+
 
     {#{{ form_start(recipe) }}
     {{ form_widget(recipe) }}
     {{ form_end(recipe) }}#}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            /* Hier der jQuery-Code */
+            $('#search').click(function(){
+                $('#eingabe').show();
+            })
+            $('#ausblenden').click(function(){
+                $('#eingabe').hide();
+            })
+            $('#create').click(function(){
+                $('#eingabe2').show();
+            })
+            $('#ausblenden2').click(function(){
+                $('#eingabe2').hide();
+            })
+            /* Hier der jQuery-Code */
+        });
+    </script>
 
 {% endblock %}
