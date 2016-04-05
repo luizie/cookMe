@@ -13,13 +13,8 @@
         <img src="{{ image }}">
     </div>
 
-
-<script type="text/javascript">
-    $(document).ready(function() {
-    $("#search").click(function(){'<h1> Bitte geben Sie ihre Zutaten ein:</h1>','{{ form_start(form) }}','{{ form_widget(form) }}','{{ form_end(form) }}'
-
-    });
-    });
-</script>
+    {#{{ form_start(recipe) }}
+    {{ form_widget(recipe) }}
+    {{ form_end(recipe) }}#}
 
 {% endblock %}

@@ -1,37 +1,44 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: luisaziegler
+ * Date: 05.04.16
+ * Time: 20:34
+ */
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * rezept
+ * Class rezept
+ * @ORM\Entity
+ * @ORM\Table(name="rezept")
  */
-class rezept
-{
-    /**
-     * @var integer
-     */
-    private $id;
 
+class rezept{
     /**
-     * @var string
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $title;
-
+    protected $id;
     /**
-     * @var string
+     * @ORM\Column(type="string", length=32)
      */
-    private $zutaten;
-
+    protected $title;
     /**
-     * @var string
+     * @ORM\Column(type="string", length=100)
      */
-    private $discription;
-
+    protected $zutaten;
     /**
-     * @var string
+     * @ORM\Column(type="text")
      */
-    private $author;
-
+    protected $discription;
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    protected $author;
 
     /**
      * Get id
@@ -139,4 +146,3 @@ class rezept
         return $this->author;
     }
 }
-
