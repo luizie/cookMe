@@ -40,7 +40,7 @@ class DefaultController extends Controller
                 "X-Mashape-Key" => "Y225bSkW3BmshYm7JN2dRnyA0P1Xp1frv1bjsnq7xhpZ4CV05s",
                 "Accept" => "application/json"
             ));
-            echo $response -> body[1] -> title;
+            echo $response -> body[0] -> title;
             return $this->render('user-dashboard/dashboard.html.twig', [ ]);
     }
 

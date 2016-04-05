@@ -10,7 +10,6 @@
 
 
 
-
     <div class="section">
         Sektion 2
     </div>
@@ -19,9 +18,11 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $("#vorspeisen").click(function(){
-                $('.section').before('<p>Test</p>');
+                $('.section').before('<h1 id="headline">Bitte wählen Sie ihre gewünschten Zutaten aus</h1>',
+                                    '<button id="ausblenden">Ausblenden</button>');
             });
         });
+
         $(document).ready(function(){
             $("#hauptspeisen").click(function(){
                 $('.section').before('<p>Test</p>');
