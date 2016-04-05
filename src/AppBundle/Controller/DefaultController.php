@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Unirest;
 
 class DefaultController extends Controller
 {
@@ -32,15 +33,15 @@ class DefaultController extends Controller
     /**
      * @Route("/recipes", name="demo_recipes")
      */
-    public function recipesAction(Response $response)
+    public function recipesAction()
     {
-       # $response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1",
-        #    array(
-         #       "X-Mashape-Key" => "Y225bSkW3BmshYm7JN2dRnyA0P1Xp1frv1bjsnq7xhpZ4CV05s",
-          #      "Accept" => "application/json"
-           # )
-            return $this->render('user-dashboard/dashboard.html.twig', []);
-
+        $response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1",
+            array(
+                "X-Mashape-Key" => "Y225bSkW3BmshYm7JN2dRnyA0P1Xp1frv1bjsnq7xhpZ4CV05s",
+                "Accept" => "application/json"
+            ));
+            echo $response -> body[1] -> title;
+            return $this->render('user-dashboard/dashboard.html.twig', [ ]);
     }
 
 }
