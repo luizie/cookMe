@@ -1,5 +1,7 @@
 {% extends'::base.html.twig' %}
 {% block body %}
+    <button type="button" class="btn btn-default" id="search"> Rezepte suchen </button>
+    <button type="button" class="btn btn-default"> Rezepte erstellen </button>
 
     <h1> Bitte geben Sie ihre Zutaten ein:</h1>
     {{ form_start(form) }}
@@ -10,5 +12,14 @@
     <div>
         <img src="{{ image }}">
     </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#search").click(function(){'<h1> Bitte geben Sie ihre Zutaten ein:</h1>','{{ form_start(form) }}','{{ form_widget(form) }}','{{ form_end(form) }}'
+
+    });
+    });
+</script>
 
 {% endblock %}

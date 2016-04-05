@@ -68,7 +68,8 @@ class DefaultController extends Controller
         return "Keine Suchbegriffe";
 
     }
-    public function webAction($suchbegriff)
+
+    public function getIdAction($suchbegriff)
     {
         if($suchbegriff != null)
         {
@@ -78,7 +79,7 @@ class DefaultController extends Controller
                     "Accept" => "application/json"
                 ));
 
-            return $response->body[0]->sourceUrl;
+            return $response->body[0]->id;
         }
         return "Keine Suchbegriffe";
 
@@ -94,17 +95,18 @@ class DefaultController extends Controller
         $suchbegriff= null;
         $title= null;
         $image= null;
-        $sourceUrl = null;
+        $id = null;
         if ($form->isSubmitted() && $form->isValid()) {
             $suchbegriff=$form["Suchbegriffe"]->getData();
             $title=$this->recipesAction($suchbegriff);
             $image =$this->imagesAction($suchbegriff);
-            $sourceUrl =$this->webAction($suchbegriff);
+            $id =$this ->getIdAction($suchbegriff);
         }
         return
         array('form' => $form->createView(),
             'title'=> $title,
-            'image'=> $image
+            'image'=> $image,
+            'id' =>$id
 
         );
     }
