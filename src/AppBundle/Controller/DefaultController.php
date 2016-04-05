@@ -32,7 +32,7 @@ class DefaultController extends Controller
     /**
      * @Route("/recipes", name="demo_recipes")
      */
-    public function recipesAction($response)
+    public function recipesAction(Response $response)
     {
        # $response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1",
         #    array(
