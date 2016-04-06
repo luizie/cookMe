@@ -8,7 +8,9 @@
     <div id="eingabe">
     <h1> Bitte geben Sie ihre Zutaten ein:</h1>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+        <div class="form-group">
+            {{ form_widget(form) }}
+        </div>
     {{ form_end(form) }}
 
     <h3>{{ title }}</h3>
