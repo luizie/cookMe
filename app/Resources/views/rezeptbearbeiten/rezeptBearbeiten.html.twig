@@ -1,0 +1,33 @@
+{% extends'::base.html.twig' %}
+{% block body %}
+    <div class="row">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    {% if userRezept.getImage() != null%}
+                        <img src="{{ userRezept.getImage()}}" height="200px" width=auto>
+                    {% else %}
+                        <img src="https://placeholdit.imgix.net/~text?txtsize=60&txt=640×640&w=640&h=640" height="200px" width=auto>
+                    {% endif %}
+                    <div class="caption">
+                        <h4>{{ userRezept.getTitle() }}</h4>
+                        <div> Zutaten: {{ userRezept.getZutaten() }}</div>
+                        <div> Beschreibung: {{ userRezept.getDiscription() }}</div>
+                        <div> Ersteller: {{ userRezept.getAuthor() }}</div>
+                        <p><a href="{{ path('rezepteAnzeigen') }}" class="btn btn-primary" role="button">Zurück zu alle Anzeigen</a></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+    <div>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock %}

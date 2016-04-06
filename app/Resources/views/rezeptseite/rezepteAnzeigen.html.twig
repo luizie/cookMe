@@ -16,7 +16,8 @@
                         <div> Zutaten: {{ r.getZutaten() }}</div>
                         <div> Beschreibung: {{ r.getDiscription() }}</div>
                         <div> Ersteller: {{ r.getAuthor() }}</div>
-                        <p><a href="#" class="btn btn-primary" role="button">Bearbeiten</a> <a href="#" class="btn btn-primary" role="button">Löschen</a></p>
+                        <p><a href="{{ path('rezeptBearbeiten', {'id': r.getId}) }}" class="btn btn-primary" role="button">Bearbeiten</a>
+                            <a href="{{ path('rezepteLoeschen', {'id': r.getId}) }}" class="btn btn-primary" role="button">Löschen</a></p>
                         <p></p>
                     </div>
                 </div>

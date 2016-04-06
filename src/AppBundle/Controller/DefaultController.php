@@ -7,6 +7,7 @@ use AppBundle\Entity\rezept;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -200,64 +201,68 @@ class DefaultController extends Controller
      * @Route("/rezeptBearbeiten", name="rezeptBearbeiten")
      */
 
-    /*
-    public function rezeptBearbeitenAction()
+
+    public function rezeptBearbeitenAction(Request $request, $id)
     {
-        $rezept = $this->getId();
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:rezept');
-        $rezepte = $repository->find();
-        $userRezepte = array();
-        foreach ($rezepte as $rezept){
-            if($rezept->getAuthor()== $usr->getUserName())
-            {
-                array_push($userRezepte, $rezept);
-            }
+        $rezept = $repository->find($id);
 
-            else {
-                throw $this->createNotFoundException(
-                    'Keine erstellen Rezepte gefunden'
-                );
-            }
+        $recipeForm = $this->createFormBuilder()
+            ->add('Titel', TextType::class)
+            ->add('Beschreibung', TextType::class)
+            ->add('Zutaten', TextType::class)
+            ->add('BildURL', TextType::class)
+            ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept upload'))
+            ->getForm();
+        $recipeForm->handleRequest($request);
 
-        };
+        if ($recipeForm->isSubmitted() && $recipeForm->isValid()) {
+            $usr = $this->getUser();
 
-        return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
-            array('userRezepte' => $userRezepte));
+            $rezept->setTitle($recipeForm["Titel"]->getData());
+            $rezept->setDiscription($recipeForm["Beschreibung"]->getData());
+            $rezept->setZutaten($recipeForm["Zutaten"]->getData());
+            $rezept->setImage($recipeForm["BildURL"]->getData());
+            $rezept->setAuthor($usr->getUsername());
+        }
+
+        $em=$this->getDoctrine()->getManager();
+        $em->flush();
+
+        return $this->render('rezeptBearbeiten/rezeptBearbeiten.html.twig',
+                        array(
+                            'userRezept' => $rezept,
+                            'form' => $recipeForm->createView()
+                        )
+        );
+
     }
-*/
+
 
     /**
-     * @Route("/rezepteAnzeigen", name="rezepteAnzeigen")
+     * @Route("/rezepteAnzeigen", name="rezepteLoeschen")
      */
 
-    /*
-        public function rezepteloeschenAction()
+
+        public function rezepteLoeschenAction($id)
         {
-            $rezept = $this->getId();
-
             $repository = $this->getDoctrine()->getRepository('AppBundle:rezept');
-            $rezepte = $repository->find();
-            $userRezepte = array();
-            foreach ($rezepte as $rezept){
-                if($rezept->getAuthor()== $usr->getUserName())
-                {
-                    array_push($userRezepte, $rezept);
-                }
 
-                else {
-                    throw $this->createNotFoundException(
-                        'Keine erstellen Rezepte gefunden'
-                    );
-                }
+            $rezept = $repository->findOneById($id);
+            echo "Hallo hallo";
+            $em=$this->getDoctrine()->getManager();
+            $em->remove($rezept);
+            $em->flush();
+            $userRezepte = $repository->findAll();
 
-            };
+
 
             return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
                 array('userRezepte' => $userRezepte));
-        }
-    */
 
+
+        }
 
 
 }
