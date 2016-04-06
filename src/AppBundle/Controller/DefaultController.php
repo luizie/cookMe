@@ -4,8 +4,10 @@ namespace AppBundle\Controller;
 
 /*use Doctrine\DBAL\Types\TextType;*/
 use AppBundle\Entity\rezept;
+use Symfony\Component\Debug\Debug;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -103,8 +105,8 @@ class DefaultController extends Controller
 
     public function formrezeptAction($request){
         $form = $this->createFormBuilder()
-            ->add('Zutaten',TextType::class)
-            ->add('Rezept suchen', SubmitType::class, array('label' => 'Rezept suchen'))
+            ->add('Zutaten',TextType:: class, array('required' => false,
+                                                        'attr' => array('class' => 'form-control')))
             ->getForm();
         $form->handleRequest($request);
         $suchbegriff= null;
@@ -113,10 +115,10 @@ class DefaultController extends Controller
         #$sourceUrl = null;
         $id = null;
         if ($form->isSubmitted() && $form->isValid()) {
-            $suchbegriff=$form["Zutaten"]->getData();
-            $title=$this->recipesAction($suchbegriff);
-            $image =$this->imagesAction($suchbegriff);
-            $id =$this ->getIdAction($suchbegriff);
+            $suchbegriff = $form["Zutaten"]->getData();
+            $title = $this->recipesAction($suchbegriff);
+            $image = $this->imagesAction($suchbegriff);
+            $id = $this ->getIdAction($suchbegriff);
            # $sourceUrl = $this->getUrlAction($id);
         }
         return
@@ -140,11 +142,14 @@ class DefaultController extends Controller
 
 
         $recipeForm = $this->createFormBuilder()
-            ->add('Titel', TextType::class)
-            ->add('Beschreibung', TextType::class)
-            ->add('Zutaten', TextType::class)
-            ->add('BildURL', UrlType::class)
-            ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept erstellen'))
+            ->add('Titel', TextType::class, array('required' => true,
+                                                    'attr' => array('class' => 'form-control')))
+            ->add('Beschreibung', TextareaType::class,array('required' => true,
+                'attr' => array('class' => 'form-control')))
+            ->add('Zutaten', TextType::class,array('required' => true,
+                'attr' => array('class' => 'form-control')))
+            ->add('BildURL', UrlType::class,array('required' => true,
+                'attr' => array('class' => 'form-control')))
             ->getForm();
 
         $recipeForm->handleRequest($request);
@@ -216,11 +221,14 @@ class DefaultController extends Controller
 
         $recipeForm = $this->createFormBuilder()
 
-            ->add('Titel', TextType::class,array('data' => $rezept->getTitle()))
-            ->add('Beschreibung', TextType::class,array('data' => $rezept->getDiscription()))
-            ->add('Zutaten', TextType::class,array('data' => $rezept->getZutaten()))
-            ->add('BildURL', TextType::class,array('data' => $rezept->getImage()))
-            ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept upload'))
+            ->add('Titel', TextType::class,array('data' => $rezept->getTitle(),
+                                                    'attr' => array('class' => 'form-control')))
+            ->add('Beschreibung', TextareaType::class,array('data' => $rezept->getDiscription(),
+                                                    'attr' => array('class' => 'form-control')))
+            ->add('Zutaten', TextType::class,array('data' => $rezept->getZutaten(),
+                                                    'attr' => array('class' => 'form-control')))
+            ->add('BildURL', TextType::class,array('data' => $rezept->getImage(),
+                                                    'attr' => array('class' => 'form-control')))
             ->getForm();
         $recipeForm->handleRequest($request);
 

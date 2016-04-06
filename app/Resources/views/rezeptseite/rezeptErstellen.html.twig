@@ -1,21 +1,20 @@
 {% extends'::base.html.twig' %}
 {% block body %}
-    <div>
-
-
+    <div id="row">
+    <div class="col-sm-6 col-md-4">
         <div id="eingabe">
             <h1> Bitte geben Sie ihre Rezept ein:</h1>
 
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_widget(form,{'attr': {'class': 'form-group'} }) }}
+            <input id="button" type="submit" value="Rezept erstellen"
+                   class="btn btn-success " />
             {{ form_end(form) }}
-        </div>
 
-        <div id="buttons">
-            <p>
-                <a id="create" class="btn btn-primary" href="{{ path('dashboard') }}">Rezept nach Zutaten suchen </a>
-                <a id="create" class="btn btn-info" href="{{ path('rezepteAnzeigen') }}">Meine Rezepte anzeigen</a>
-            </p>
+                <a id="button" class="btn btn-primary" href="{{ path('dashboard') }}">Rezept nach Zutaten suchen </a>
+                <a id="button" class="btn btn-info" href="{{ path('rezepteAnzeigen') }}">Meine Rezepte anzeigen</a>
+
+        </div>
         </div>
 
 
