@@ -1,6 +1,6 @@
 {% extends'::base.html.twig' %}
 {% block body %}
-
+<div id="content">
     <div class="row">
     {% for r in userRezepte %}
 
@@ -17,7 +17,7 @@
                         <div> Beschreibung: {{ r.getDiscription() }}</div>
                         <div> Ersteller: {{ r.getAuthor() }}</div>
                         <p><a href="{{ path('rezeptBearbeiten', {'id': r.getId}) }}" class="btn btn-primary" role="button">Bearbeiten</a>
-                            <a href="{{ path('rezepteLoeschen', {'id': r.getId}) }}" class="btn btn-primary" role="button">Löschen</a></p>
+                            <a href="{{ path('rezepteLoeschen', {'id': r.getId}) }}" class=".btn-danger btn btn-primary" role="button">Löschen</a></p>
                         <p></p>
                     </div>
                 </div>
@@ -26,6 +26,6 @@
         {% endfor %}
     </div>
 
-
+</div>
 
 {% endblock %}

@@ -36,9 +36,13 @@ rezepteAnzeigen:
     defaults: { _controller: AppBundle:Default:rezepteAnzeigen }
 
 rezepteLoeschen:
-        path: /rezepteLoeschen/{id}
-        defaults: { _controller: AppBundle:Default:rezepteAnzeigen }
+    path: /rezepteLoeschen/{id}
+    defaults: { _controller: AppBundle:Default:rezepteLoeschen }
 
 rezeptBearbeiten:
-                path: /rezeptBearbeiten/{id}
-                defaults: { _controller: AppBundle:Default:rezeptBearbeiten }
+    path: /rezeptBearbeiten/{id}
+    defaults: { _controller: AppBundle:Default:rezeptBearbeiten }
+
+erfolgreichErstellt:
+    path: /erfolgreichErstellt
+    defaults: { _controller: AppBundle:Default:erfolgreichErstellt }

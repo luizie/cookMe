@@ -161,6 +161,7 @@ class DefaultController extends Controller
                 $em=$this->getDoctrine()->getManager();
                 $em->persist($rezept);
                 $em->flush();
+                return $this->redirectToRoute('homepage');
                }
 
         return $this->render('rezeptseite/rezeptErstellen.html.twig', array('form'=>$recipeForm->createView()));
@@ -209,16 +210,19 @@ class DefaultController extends Controller
         $rezept = $repository->find($id);
 
         $recipeForm = $this->createFormBuilder()
-            ->add('Titel', TextType::class)
-            ->add('Beschreibung', TextType::class)
-            ->add('Zutaten', TextType::class)
-            ->add('BildURL', TextType::class)
+
+            ->add('Titel', TextType::class,array('data' => $rezept->getTitle()))
+            ->add('Beschreibung', TextType::class,array('data' => $rezept->getDiscription()))
+            ->add('Zutaten', TextType::class,array('data' => $rezept->getZutaten()))
+            ->add('BildURL', TextType::class,array('data' => $rezept->getImage()))
             ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept upload'))
             ->getForm();
         $recipeForm->handleRequest($request);
 
         if ($recipeForm->isSubmitted() && $recipeForm->isValid()) {
             $usr = $this->getUser();
+
+
 
             $rezept->setTitle($recipeForm["Titel"]->getData());
             $rezept->setDiscription($recipeForm["Beschreibung"]->getData());
@@ -250,7 +254,6 @@ class DefaultController extends Controller
             $repository = $this->getDoctrine()->getRepository('AppBundle:rezept');
 
             $rezept = $repository->findOneById($id);
-            echo "Hallo hallo";
             $em=$this->getDoctrine()->getManager();
             $em->remove($rezept);
             $em->flush();

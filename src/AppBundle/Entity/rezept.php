@@ -40,7 +40,7 @@ class rezept{
      */
     protected $author;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=400)
      */
     protected $image;
 
