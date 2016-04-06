@@ -2,8 +2,6 @@
 
 {% block body %}
 
-    <h3> Hallo hallo </h3>
-
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Positionsanzeiger -->
         <ol class="carousel-indicators">
@@ -15,24 +13,27 @@
         <!-- Verpackung für die Elemente -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="/images/img1.gif" alt="...">
+                <img id="image" src="/images/img1.gif" alt="...">
                 <div class="carousel-caption">
                     <h3>wuuuhuuuu</h3>
                     <p>blablabla</p>
+                    <a class="ghost_btn" href="{{ path('fos_user_security_login') }}">Anmelden</a>
                 </div>
             </div>
             <div class="item">
-                <img src="/images/img2.gif" alt="...">
+                <img id="image" src="/images/img2.gif" alt="...">
                 <div class="carousel-caption">
                     <h3>wuuuhuuuu</h3>
                     <p>blablabla</p>
+                    <a class="ghost_btn" href="{{ path('fos_user_security_login') }}>Anmelden</a>
                 </div>
             </div>
             <div class="item">
-                <img src="/images/img3.gif" alt="...">
+                <img id="image" src="/images/img3.gif" alt="...">
                 <div class="carousel-caption">
                     <h3>wuuuhuuuu</h3>
                     <p>blablabla</p>
+                    <a class="ghost_btn" href="{{ path('fos_user_security_login') }}>Anmelden</a>
                 </div>
             </div>
 
@@ -49,16 +50,12 @@
         </a>
     </div>
 
-    
+
 
 <!-- Script to Activate the Carousel -->
     {% block javascripts %}
         <script>
-            $(document).ready(function() {
-                $('#myCarousel').carousel({
-                    interval:   4000
-                });
-            });
+
         </script>
         {% endblock %}
 
