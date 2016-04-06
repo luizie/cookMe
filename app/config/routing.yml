@@ -42,7 +42,3 @@ rezepteLoeschen:
 rezeptBearbeiten:
     path: /rezeptBearbeiten/{id}
     defaults: { _controller: AppBundle:Default:rezeptBearbeiten }
-
-erfolgreichErstellt:
-    path: /erfolgreichErstellt
-    defaults: { _controller: AppBundle:Default:erfolgreichErstellt }

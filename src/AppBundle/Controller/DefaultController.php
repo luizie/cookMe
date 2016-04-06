@@ -156,12 +156,16 @@ class DefaultController extends Controller
                 $rezept->setDiscription($recipeForm["Beschreibung"]->getData());
                 $rezept->setZutaten($recipeForm["Zutaten"]->getData());
                 $rezept->setImage($recipeForm["BildURL"]->getData());
+                if($recipeForm["BildURL"]-> getData() == "")
+                {
+                    $rezept->setImage("http://www.feuerwehr-andelsbuch.at/wp-content/uploads/2013/05/Platzhalter.jpg");
+                }
                 $rezept->setAuthor($usr->getUsername());
 
                 $em=$this->getDoctrine()->getManager();
                 $em->persist($rezept);
                 $em->flush();
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('rezepteAnzeigen');
                }
 
         return $this->render('rezeptseite/rezeptErstellen.html.twig', array('form'=>$recipeForm->createView()));

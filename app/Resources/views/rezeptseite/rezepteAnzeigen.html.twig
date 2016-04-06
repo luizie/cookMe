@@ -6,24 +6,27 @@
 
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    {% if r.getImage() != null%}
                     <img src="{{ r.getImage()}}" height="200px" width=auto>
-                    {% else %}
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=60&txt=640×640&w=640&h=640" height="200px" width=auto>
-                    {% endif %}
+
                     <div class="caption">
                         <h4>{{ r.getTitle() }}</h4>
                         <div> Zutaten: {{ r.getZutaten() }}</div>
                         <div> Beschreibung: {{ r.getDiscription() }}</div>
                         <div> Ersteller: {{ r.getAuthor() }}</div>
                         <p><a href="{{ path('rezeptBearbeiten', {'id': r.getId}) }}" class="btn btn-primary" role="button">Bearbeiten</a>
-                            <a href="{{ path('rezepteLoeschen', {'id': r.getId}) }}" class=".btn-danger btn btn-primary" role="button">Löschen</a></p>
+                            <a href="{{ path('rezepteLoeschen', {'id': r.getId}) }}" class="btn-danger btn" role="button">Löschen</a></p>
                         <p></p>
                     </div>
                 </div>
             </div>
 
+
         {% endfor %}
+    </div>
+    <div>
+        <a href="{{ path('dashboard') }}" class="btn btn-success" role="button"> Zurück zur Rezeptsuche</a>
+        <a href="{{ path('rezeptErstellen') }}" class="btn btn-info" role="button"> Mehr Rezepte erstellen</a>
+
     </div>
 
 </div>
