@@ -5,19 +5,21 @@
     <button type="button" class="btn btn-primary" id="create" href="{{ path('rezeptErstellen') }}"> Rezepte erstellen </button>#}
 
 
-    <div id="eingabe">
-    <h1> Bitte geben Sie ihre Zutaten ein:</h1>
-    {{ form_start(form) }}
-        <div class="form-group">
-            {{ form_widget(form) }}
-        </div>
-    {{ form_end(form) }}
+        <div id="eingabe">
+            <h1> Bitte geben Sie ihre Zutaten ein:</h1>
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_widget(form) }}
+            </div>
+            {{ form_end(form) }}
 
-    <h3>{{ title }}</h3>
-    <div id="result">
-        <img src="{{ image }}">
-    </div>
-    </div>
+            <div class="ausgabe">
+                <h3>{{ title }}</h3>
+                <div id="result">
+                    <img src="{{ image }}" width="120px" height="auto">
+                </div>
+            </div>
+        </div>
 
         <div id="buttons">
             <p><a id="create" class="btn btn-primary" href="{{ path('rezeptErstellen') }}">

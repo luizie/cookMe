@@ -70,19 +70,20 @@ class DefaultController extends Controller
         return "Keine Suchbegriffe";
 
     }
-#{# public function getUrlAction($id)
-    #{
-    #if($id != null)
-    #{
-    #$response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/.$id./information?includeNutrition=false",
-    #array(
-    #"X-Mashape-Key" => "NC1TuLMWqWmshPVApoF33XxX3zfzp1lIkawjsn4XowAljjweAU",
-    #"Accept" => "application/json"
-    #));
-    #return $response->body[]-sourceUrl;
-    #}
-    #return "Keine Suchbegriffe";
-    #}
+
+   /*  public function getUrlAction($id)
+     {
+         if($id != null) {
+             $response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/.$id./information?includeNutrition=false",
+                 array(
+                     "X-Mashape-Key" => "NC1TuLMWqWmshPVApoF33XxX3zfzp1lIkawjsn4XowAljjweAU",
+                     "Accept" => "application/json"));
+             return $response->body[]-sourceUrl;}
+
+    return "Keine Suchbegriffe";
+     }
+   */
+
     public function getIdAction($suchbegriff)
     {
         if($suchbegriff != null)
@@ -109,14 +110,14 @@ class DefaultController extends Controller
         $suchbegriff= null;
         $title= null;
         $image= null;
-       # $sourceUrl = null;
+        #$sourceUrl = null;
         $id = null;
         if ($form->isSubmitted() && $form->isValid()) {
             $suchbegriff=$form["Zutaten"]->getData();
             $title=$this->recipesAction($suchbegriff);
             $image =$this->imagesAction($suchbegriff);
             $id =$this ->getIdAction($suchbegriff);
-            #$sourceUrl = $this->getUrlAction($id);
+           # $sourceUrl = $this->getUrlAction($id);
         }
         return
         array('form' => $form->createView(),
