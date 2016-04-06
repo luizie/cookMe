@@ -127,7 +127,7 @@ class DefaultController extends Controller
         );
     }
 
-    public function recipeFormAction($request)
+  /* public function recipeFormAction($request)
     {
         // create a task and give it some dummy data for this example
         $rezept = new rezept();
@@ -146,13 +146,25 @@ class DefaultController extends Controller
             ->getForm();
 
         $recipeForm->handleRequest($request);
+            $title=null;
+            $description = null;
+            $zutaten = null;
+            $autor = null;
+            if ($recipeForm->isSubmitted() && $recipeForm->isValid()) {
+            $title=$rezept["Titel"]->getData();
+            $description=$rezept["Beschreibung"]->getData();
+            $zutaten=$rezept["Zutaten"]->getData();
+            $autor=$rezept["Autor"]->getData();
+               }
 
         return $recipeForm->createView();
     }
+*/
 
     /**
      * @Route("/user-dashboard", name="dashboard")
      */
+    /*
     public function createRecipesAction(Request $request)
     {
         // replace this example code with whatever you need
@@ -160,7 +172,28 @@ class DefaultController extends Controller
         );
     }
 
+    public function editAction()
+    {
 
+    }
+
+
+
+    public function showNewRecipe()
+    {
+        $recipes = $this->getDoctrine()->getEntityManager();
+
+        $rezept = $->getRepository('AppBundle:rezept')->findAll();
+
+        if (!$rezept) {
+            throw $this->createNotFoundException(
+                'Keine erstellen Rezepte gefunden'
+            );
+        }
+
+        return $rezept;
+    }
+    */
 
 
 }

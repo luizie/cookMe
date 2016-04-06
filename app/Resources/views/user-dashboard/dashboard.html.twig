@@ -13,12 +13,10 @@
     <div>
         <img src="{{ image }}">
     </div>
-        <button type="button" class="btn btn-default" id="ausblenden"> Ausblenden </button>
     </div>
 
     <div id="eingabe2">
         <h1> Bitte geben Sie ihre Rezept ein:</h1>
-        <button type="button" class="btn btn-xs btn-default" id="ausblenden2"> Ausblenden </button>
     </div>
 
 
@@ -29,20 +27,16 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#eingabe2').hide();
             /* Hier der jQuery-Code */
             $('#search').click(function(){
-                $('#eingabe').show();
-            })
-            $('#ausblenden').click(function(){
-                $('#eingabe').hide();
+                $('#eingabe2').hide();
+                $('#eingabe').toggle();
             })
             $('#create').click(function(){
-                $('#eingabe2').show();
+                $('#eingabe').hide();
+                $('#eingabe2').toggle();
             })
-            $('#ausblenden2').click(function(){
-                $('#eingabe2').hide();
-            })
-            /* Hier der jQuery-Code */
         });
     </script>
 
