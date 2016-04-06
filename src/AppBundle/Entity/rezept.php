@@ -39,6 +39,10 @@ class rezept{
      * @ORM\Column(type="string", length=32)
      */
     protected $author;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $image;
 
     /**
      * Get id
@@ -144,5 +148,29 @@ class rezept{
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return rezept
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

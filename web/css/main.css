@@ -94,3 +94,16 @@ a.ghost_btn:hover{
     background: rgba(255, 255, 255, 0.5);
     color: #000;
 }
+
+#eingabe {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+#buttons {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+

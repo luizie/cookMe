@@ -26,3 +26,11 @@ fos_user_change_password:
 recipes:
     path: /recipes
     defaults: { _controller: AppBundle:Default:recipes }
+
+rezeptErstellen:
+    path: /rezeptErstellen
+    defaults: { _controller: AppBundle:Default:rezeptErstellen }
+
+rezepteAnzeigen:
+    path: /rezepteAnzeigen
+    defaults: { _controller: AppBundle:Default:rezepteAnzeigen }

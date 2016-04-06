@@ -1,8 +1,9 @@
 {% extends'::base.html.twig' %}
 {% block body %}
     <div id="content_dashboard">
-    <button type="button" class="btn btn-primary" id="search"> Rezepte suchen </button>
-    <button type="button" class="btn btn-primary" id="create"> Rezepte erstellen </button>
+   {# <button type="button" class="btn btn-primary" id="search"> Rezepte suchen </button>
+    <button type="button" class="btn btn-primary" id="create" href="{{ path('rezeptErstellen') }}"> Rezepte erstellen </button>#}
+
 
     <div id="eingabe">
     <h1> Bitte geben Sie ihre Zutaten ein:</h1>
@@ -16,31 +17,21 @@
     </div>
     </div>
 
-    <div id="eingabe2">
-        <h1> Bitte geben Sie ihre Rezept ein:</h1>
-    </div>
+        <div id="buttons">
+            <a id="create" href="{{ path('rezeptErstellen') }}">
+                Rezept erstellen
+            </a>
+            <a id="create" href="{{ path('rezepteAnzeigen') }}">
+                Meine Rezepte anzeigen
+            </a>
+        </div>
+
 
     </div>
 
 
 
-    {#{{ form_start(recipe) }}
-    {{ form_widget(recipe) }}
-    {{ form_end(recipe) }}#}
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#eingabe2').hide();
-            /* Hier der jQuery-Code */
-            $('#search').click(function(){
-                $('#eingabe2').hide();
-                $('#eingabe').toggle();
-            })
-            $('#create').click(function(){
-                $('#eingabe').hide();
-                $('#eingabe2').toggle();
-            })
-        });
-    </script>
+
 
 {% endblock %}

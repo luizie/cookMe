@@ -1,0 +1,29 @@
+{% extends'::base.html.twig' %}
+{% block body %}
+    <div>
+
+
+        <div id="eingabe">
+            <h1> Bitte geben Sie ihre Rezept ein:</h1>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+
+        <div id="buttons">
+        <a id="create" href="{{ path('dashboard') }}">
+            Rezept nach Zutaten suchen
+        </a>
+        </div>
+        <div id="buttons">
+        <a id="create" href="{{ path('rezepteAnzeigen') }}">
+            <p>Meine Rezepte anzeigen</p>
+        </a>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

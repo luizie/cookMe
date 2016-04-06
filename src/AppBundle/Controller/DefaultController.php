@@ -127,73 +127,75 @@ class DefaultController extends Controller
         );
     }
 
-  /* public function recipeFormAction($request)
+    /**
+     * @Route("/rezeptErstellen", name="rezeptErstellen")
+     */
+
+   public function rezeptErstellenAction(Request $request)
     {
         // create a task and give it some dummy data for this example
         $rezept = new rezept();
-        $rezept->setTitle('');
-        $rezept->setDiscription('');
-        $rezept->setZutaten('');
-        $rezept->setAuthor('');
 
 
-        $recipeForm = $this->createFormBuilder($rezept)
+        $recipeForm = $this->createFormBuilder()
             ->add('Titel', TextType::class)
             ->add('Beschreibung', TextType::class)
             ->add('Zutaten', TextType::class)
-            ->add('Autor', TextType::class)
+            ->add('BildURL', TextType::class)
             ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept erstellen'))
             ->getForm();
 
         $recipeForm->handleRequest($request);
-            $title=null;
-            $description = null;
-            $zutaten = null;
-            $autor = null;
+
             if ($recipeForm->isSubmitted() && $recipeForm->isValid()) {
-            $title=$rezept["Titel"]->getData();
-            $description=$rezept["Beschreibung"]->getData();
-            $zutaten=$rezept["Zutaten"]->getData();
-            $autor=$rezept["Autor"]->getData();
+
+                $usr = $this->getUser();
+
+                $rezept->setTitle($recipeForm["Titel"]->getData());
+                $rezept->setDiscription($recipeForm["Beschreibung"]->getData());
+                $rezept->setZutaten($recipeForm["Zutaten"]->getData());
+                $rezept->setImage($recipeForm["BildURL"]->getData());
+                $rezept->setAuthor($usr->getUsername());
+
+                $em=$this->getDoctrine()->getManager();
+                $em->persist($rezept);
+                $em->flush();
                }
 
-        return $recipeForm->createView();
+        return $this->render('rezeptseite/rezeptErstellen.html.twig', array('form'=>$recipeForm->createView()));
     }
-*/
+
 
     /**
-     * @Route("/user-dashboard", name="dashboard")
+     * @Route("/rezepteAnzeigen", name="rezepteAnzeigen")
      */
-    /*
-    public function createRecipesAction(Request $request)
+
+
+    public function rezepteAnzeigenAction()
     {
-        // replace this example code with whatever you need
-        return $this->render('user-dashboard/dashboard.html.twig',$this->recipeFormAction($request)
-        );
+        $usr = $this->getUser();
+
+        $repository = $this->getDoctrine()->getRepository('AppBundle:rezept');
+        $rezepte = $repository->findAll();
+        $userRezepte = array();
+        foreach ($rezepte as $rezept){
+            if($rezept->getAuthor()== $usr->getUserName())
+            {
+                array_push($userRezepte, $rezept);
+            }
+
+            else {
+                throw $this->createNotFoundException(
+                    'Keine erstellen Rezepte gefunden'
+                );
+            }
+
+            };
+
+        return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
+            array('userRezepte' => $userRezepte));
     }
 
-    public function editAction()
-    {
-
-    }
-
-
-
-    public function showNewRecipe()
-    {
-        $recipes = $this->getDoctrine()->getEntityManager();
-
-        $rezept = $->getRepository('AppBundle:rezept')->findAll();
-
-        if (!$rezept) {
-            throw $this->createNotFoundException(
-                'Keine erstellen Rezepte gefunden'
-            );
-        }
-
-        return $rezept;
-    }
-    */
 
 
 }

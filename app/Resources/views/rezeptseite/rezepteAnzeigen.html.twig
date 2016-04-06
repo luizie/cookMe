@@ -1,0 +1,25 @@
+{% extends'::base.html.twig' %}
+{% block body %}
+
+    {% for r in userRezepte %}
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="{{ r.getImage()}}" height="100px" width=auto>
+                    <div class="caption">
+                        <div>{{ r.getTitle() }}</div>
+                        <div>{{ r.getZutaten() }}</div>
+                        <div>{{ r.getDiscription() }}</div>
+                        <div>{{ r.getAuthor() }}</div>
+                        <p><a href="#" class="btn btn-primary" role="button">Bearbeiten</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+
+
+
+{% endblock %}
