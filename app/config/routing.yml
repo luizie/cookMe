@@ -34,3 +34,11 @@ rezeptErstellen:
 rezepteAnzeigen:
     path: /rezepteAnzeigen
     defaults: { _controller: AppBundle:Default:rezepteAnzeigen }
+
+rezepteloeschen:
+        path: /rezepteAnzeigen
+        defaults: { _controller: AppBundle:Default:rezepteAnzeigen }
+
+rezeptBearbeiten:
+                path: /rezeptBearbeiten
+                defaults: { _controller: AppBundle:Default:rezeptBearbeiten }

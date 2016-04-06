@@ -141,7 +141,7 @@ class DefaultController extends Controller
             ->add('Titel', TextType::class)
             ->add('Beschreibung', TextType::class)
             ->add('Zutaten', TextType::class)
-            ->add('BildURL', TextType::class)
+            ->add('BildURL', UrlType::class)
             ->add('Rezept_erstellen', SubmitType::class, array('label' => 'Rezept erstellen'))
             ->getForm();
 
@@ -195,6 +195,68 @@ class DefaultController extends Controller
         return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
             array('userRezepte' => $userRezepte));
     }
+
+    /**
+     * @Route("/rezeptBearbeiten", name="rezeptBearbeiten")
+     */
+
+    /*
+    public function rezeptBearbeitenAction()
+    {
+        $rezept = $this->getId();
+
+        $repository = $this->getDoctrine()->getRepository('AppBundle:rezept');
+        $rezepte = $repository->find();
+        $userRezepte = array();
+        foreach ($rezepte as $rezept){
+            if($rezept->getAuthor()== $usr->getUserName())
+            {
+                array_push($userRezepte, $rezept);
+            }
+
+            else {
+                throw $this->createNotFoundException(
+                    'Keine erstellen Rezepte gefunden'
+                );
+            }
+
+        };
+
+        return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
+            array('userRezepte' => $userRezepte));
+    }
+*/
+
+    /**
+     * @Route("/rezepteAnzeigen", name="rezepteAnzeigen")
+     */
+
+    /*
+        public function rezepteloeschenAction()
+        {
+            $rezept = $this->getId();
+
+            $repository = $this->getDoctrine()->getRepository('AppBundle:rezept');
+            $rezepte = $repository->find();
+            $userRezepte = array();
+            foreach ($rezepte as $rezept){
+                if($rezept->getAuthor()== $usr->getUserName())
+                {
+                    array_push($userRezepte, $rezept);
+                }
+
+                else {
+                    throw $this->createNotFoundException(
+                        'Keine erstellen Rezepte gefunden'
+                    );
+                }
+
+            };
+
+            return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
+                array('userRezepte' => $userRezepte));
+        }
+    */
 
 
 
