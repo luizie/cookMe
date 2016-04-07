@@ -18,6 +18,11 @@ use Unirest;
 class DefaultController extends Controller
 {
     /**
+     * Hier wird der Inhalt der Homepage bestimmt
+     */
+
+
+    /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
@@ -29,6 +34,10 @@ class DefaultController extends Controller
     }
 
     /**
+     * Hier wird der Inhalt des Dashboards bestimmt
+     */
+
+    /**
      * @Route("/user-dashboard", name="dashboard")
      */
     public function dashboardAction(Request $request)
@@ -37,6 +46,11 @@ class DefaultController extends Controller
         return $this->render('user-dashboard/dashboard.html.twig',$this->formrezeptAction($request)
             );
     }
+
+    /**
+     * Hier wird der das Formular für die Zutatensuche erstellt
+     */
+
 
     public function formrezeptAction($request){
         $form = $this->createFormBuilder()
@@ -49,6 +63,11 @@ class DefaultController extends Controller
         $image= null;
         #$sourceUrl = null;
         $id = null;
+
+        /**
+         * Entsprechende funktionen für die variablen werden aufgerufen
+         */
+
         if ($form->isSubmitted() && $form->isValid()) {
             $suchbegriff = $form["Zutaten"]->getData();
             $title = $this->recipesAction($suchbegriff);
@@ -67,7 +86,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Hier ist der Code für die Abfrage der API
+     * Hier ist der Code für die Abfrage der API Titel wird ausgegeben
      */
 
     /**
@@ -89,6 +108,11 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * Hier ist der Code für die Abfrage der API Image wird ausgegeben
+     */
+
+
     public function imagesAction($suchbegriff)
     {
         if($suchbegriff != null)
@@ -105,18 +129,9 @@ class DefaultController extends Controller
 
     }
 
-   /*  public function getUrlAction($id)
-     {
-         if($id != null) {
-             $response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/.$id./information?includeNutrition=false",
-                 array(
-                     "X-Mashape-Key" => "NC1TuLMWqWmshPVApoF33XxX3zfzp1lIkawjsn4XowAljjweAU",
-                     "Accept" => "application/json"));
-             return $response->body[]-sourceUrl;}
-
-    return "Keine Suchbegriffe";
-     }
-   */
+    /**
+     * Hier ist der Code für die Abfrage der ID des Rezeptes wird ausgegeben
+     */
 
     public function getIdAction($suchbegriff)
     {
@@ -134,8 +149,26 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * Hier ist der Code für die Abfrage der API ULR wird ausgegeben
+     */
 
+   /*  public function getUrlAction($id)
+     {
+         if($id != null) {
+             $response = Unirest\Request::get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/.$id./information?includeNutrition=false",
+                 array(
+                     "X-Mashape-Key" => "NC1TuLMWqWmshPVApoF33XxX3zfzp1lIkawjsn4XowAljjweAU",
+                     "Accept" => "application/json"));
+             return $response->body[]-sourceUrl;}
 
+    return "Keine Suchbegriffe";
+     }
+   */
+
+    /**
+     * Funktion erstellt Formular für Rezept und liest es aus
+     */
 
     /**
      * @Route("/rezeptErstellen", name="rezeptErstellen")
@@ -143,7 +176,6 @@ class DefaultController extends Controller
 
    public function rezeptErstellenAction(Request $request)
     {
-        // create a task and give it some dummy data for this example
         $rezept = new rezept();
 
 
@@ -184,6 +216,11 @@ class DefaultController extends Controller
     }
 
 
+
+    /**
+     * Hier ist der Code für das Anzeigen der eigenen Rezepte
+     */
+
     /**
      * @Route("/rezepteAnzeigen", name="rezepteAnzeigen")
      */
@@ -215,9 +252,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/rezeptBearbeiten", name="rezeptBearbeiten")
+     * Hier ist der Code für das Bearbeiten von Rezepten
      */
 
+    /**
+     * @Route("/rezeptBearbeiten", name="rezeptBearbeiten")
+     */
 
     public function rezeptBearbeitenAction(Request $request, $id)
     {
@@ -241,8 +281,6 @@ class DefaultController extends Controller
 
         if ($recipeForm->isSubmitted() && $recipeForm->isValid()) {
             $usr = $this->getUser();
-
-
 
             $rezept->setTitle($recipeForm["Titel"]->getData());
             $rezept->setDiscription($recipeForm["Beschreibung"]->getData());
@@ -278,8 +316,6 @@ class DefaultController extends Controller
             $em->remove($rezept);
             $em->flush();
             $userRezepte = $repository->findAll();
-
-
 
             return $this->render('rezeptseite/rezepteAnzeigen.html.twig',
                 array('userRezepte' => $userRezepte));
