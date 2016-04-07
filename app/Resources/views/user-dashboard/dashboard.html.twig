@@ -5,9 +5,8 @@
         <div class="col-sm-6 col-md-4">
             <h1> Bitte geben Sie ihre Zutaten ein:</h1>
             {{ form_start(form,{'attr': {'class': 'form-group'} }) }}
-                {{ form_widget(form) }}
-            <input id="button" type="submit" value="Rezept suchen"
-                   class="btn btn-success " />
+            {{ form_widget(form) }}
+            <input id="button" type="submit" value="Rezept suchen" class="btn btn-success " />
             {{ form_end(form) }}
 
             <div class="ausgabe">
@@ -17,14 +16,11 @@
                 </div>
             </div>
 
-        <div id="buttons">
-            <p><a id="create" class="btn btn-primary" href="{{ path('rezeptErstellen') }}">
-                Rezept erstellen
-            </a>
-            <a id="create" class="btn btn-primary" href="{{ path('rezepteAnzeigen') }}">
-                Meine Rezepte anzeigen
-            </a></p>
-        </div>
+            <div id="buttons">
+                <p><a id="create" class="btn btn-primary" href="{{ path('rezeptErstellen') }}">Rezept erstellen</a>
+                    <a id="create" class="btn btn-primary" href="{{ path('rezepteAnzeigen') }}">Meine Rezepte anzeigen</a>
+                </p>
+            </div>
         </div>
         <div class="col-sm-6 col-md-4">
             <form name="besuch">
@@ -33,11 +29,9 @@
                 </div>
             </form>
             <button type="button" onclick="stoppuhr()" class="bla" >Klicken</button>
-
         </div>
-
-
     </div>
+
 
     <script type="text/javascript">
 
@@ -46,26 +40,16 @@
 
         });
 
-
         start = new Date();
         startzeit = start.getTime();
 
-
-        function stoppuhr()
-
-        {
+        function stoppuhr() {
             aktuell = new Date();
-
             zeit = (aktuell.getTime() - startzeit) / 1000;
-
             document.besuch.dauer.value = Math.round(zeit);
-
             console.log(Math.round(zeit))
-
             setTimeout('stoppuhr()',1000);
-
         }
-
     </script>
 
 {% endblock %}

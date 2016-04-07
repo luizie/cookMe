@@ -38,6 +38,38 @@ class DefaultController extends Controller
             );
     }
 
+    public function formrezeptAction($request){
+        $form = $this->createFormBuilder()
+            ->add('Zutaten',TextType:: class, array('required' => false,
+                'attr' => array('class' => 'form-control')))
+            ->getForm();
+        $form->handleRequest($request);
+        $suchbegriff= null;
+        $title= null;
+        $image= null;
+        #$sourceUrl = null;
+        $id = null;
+        if ($form->isSubmitted() && $form->isValid()) {
+            $suchbegriff = $form["Zutaten"]->getData();
+            $title = $this->recipesAction($suchbegriff);
+            $image = $this->imagesAction($suchbegriff);
+            $id = $this ->getIdAction($suchbegriff);
+            # $sourceUrl = $this->getUrlAction($id);
+        }
+        return
+            array('form' => $form->createView(),
+                'title'=> $title,
+                'image'=> $image,
+                #'sourceUrl' => $sourceUrl,
+                'id' =>$id
+
+            );
+    }
+
+    /**
+     * Hier ist der Code für die Abfrage der API
+     */
+
     /**
      * @Route("/search", name="demo_recipes")
      */
@@ -103,33 +135,7 @@ class DefaultController extends Controller
     }
 
 
-    public function formrezeptAction($request){
-        $form = $this->createFormBuilder()
-            ->add('Zutaten',TextType:: class, array('required' => false,
-                                                        'attr' => array('class' => 'form-control')))
-            ->getForm();
-        $form->handleRequest($request);
-        $suchbegriff= null;
-        $title= null;
-        $image= null;
-        #$sourceUrl = null;
-        $id = null;
-        if ($form->isSubmitted() && $form->isValid()) {
-            $suchbegriff = $form["Zutaten"]->getData();
-            $title = $this->recipesAction($suchbegriff);
-            $image = $this->imagesAction($suchbegriff);
-            $id = $this ->getIdAction($suchbegriff);
-           # $sourceUrl = $this->getUrlAction($id);
-        }
-        return
-        array('form' => $form->createView(),
-            'title'=> $title,
-            'image'=> $image,
-            #'sourceUrl' => $sourceUrl,
-            'id' =>$id
 
-        );
-    }
 
     /**
      * @Route("/rezeptErstellen", name="rezeptErstellen")

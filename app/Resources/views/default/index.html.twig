@@ -3,6 +3,7 @@
 {% block body %}
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
         <!-- Positionsanzeiger -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -39,7 +40,7 @@
 
         </div>
 
-        <!-- Schalter -->
+        <!-- Buttons -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Zurück</span>
@@ -51,13 +52,8 @@
     </div>
 
 
-
-<!-- Script to Activate the Carousel -->
     {% block javascripts %}
-        <script>
-
-        </script>
-        {% endblock %}
+    {% endblock %}
 
 {% endblock %}
 
