@@ -1,6 +1,16 @@
 {% extends'::base.html.twig' %}
 {% block body %}
     <div class="row">
+        <div>
+            <form name="besuch">
+
+                Sie sind seit <input name="dauer" id="ka" size="10"> Sekunden auf dieser Seite.
+
+            </form>
+            <button type="button" onclick="stoppuhr()" class="bla" >Klicken</button>
+
+
+        </div>
         <div class="col-sm-6 col-md-4">
             <h1> Bitte geben Sie ihre Zutaten ein:</h1>
             {{ form_start(form,{'attr': {'class': 'form-group'} }) }}
@@ -29,9 +39,45 @@
 
     </div>
 
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $(".bla").click();
+
+            document.onload = function() { aktuell = new Date();
+
+                zeit = (aktuell.getTime() - startzeit) / 1000;
+
+                document.besuch.dauer.value = Math.round(zeit);
+
+                setTimeout('stoppuhr()',1000);}
+
+
+        });
 
 
 
+        start = new Date();
 
+        startzeit = start.getTime();
+
+
+
+        function stoppuhr()
+
+        {
+            aktuell = new Date();
+
+            zeit = (aktuell.getTime() - startzeit) / 1000;
+
+            document.besuch.dauer.value = Math.round(zeit);
+
+            console.log(Math.round(zeit))
+
+            setTimeout('stoppuhr()',1000);
+
+        }
+
+    </script>
 
 {% endblock %}

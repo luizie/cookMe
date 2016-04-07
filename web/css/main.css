@@ -6,6 +6,10 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.bla{
+    display: none;
+}
 h3{
     color: #1d9b6c;
 }
