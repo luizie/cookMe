@@ -154,7 +154,7 @@ class DefaultController extends Controller
                 'attr' => array('class' => 'form-control')))
             ->add('Zutaten', TextType::class,array('required' => true,
                 'attr' => array('class' => 'form-control')))
-            ->add('BildURL', UrlType::class,array('required' => true,
+            ->add('BildURL', UrlType::class,array('required' => false,
                 'attr' => array('class' => 'form-control')))
             ->getForm();
 
@@ -234,7 +234,8 @@ class DefaultController extends Controller
             ->add('Zutaten', TextType::class,array('data' => $rezept->getZutaten(),
                                                     'attr' => array('class' => 'form-control')))
             ->add('BildURL', TextType::class,array('data' => $rezept->getImage(),
-                                                    'attr' => array('class' => 'form-control')))
+                                                    'attr' => array('class' => 'form-control',
+                                                                    'required' => false)))
             ->getForm();
         $recipeForm->handleRequest($request);
 
